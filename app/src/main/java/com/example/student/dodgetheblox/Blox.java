@@ -6,24 +6,25 @@ package com.example.student.dodgetheblox;
 
 
 public class Blox {
-    int x, y, speed, size;
+    int x, y, width, height, speed;
 
-    public Blox(int _x, int _y, int _speed, int _size){
+    public Blox(int _x, int _y, int _width, int _height, int _speed){
         x = _x;
         y = _y;
+        width = _width;
+        height = _height;
         speed = _speed;
-        size = _size;
     }
 
-    public void Move(int y, int speed){
-        y += speed;
+    public void Move(Blox b){
+        b.y += b.speed;
     }
 
     public boolean Collision(Player p, Blox b){
-        if(b.x > p.x && b.x < p.x + p.width && b.y + b.size > p.y && b.y + b.size < p.y + p.height) {
+        if(b.x > p.x && b.x < p.x + p.width && b.y + b.height > p.y && b.y + b.height < p.y + p.height) {
             return true;
         }
-        else if(b.x + b.size > p.x && b.x + b.size < p.x +p.width && b.y > p.y && b.y < p.y + p.height){
+        else if(b.x + b.width > p.x && b.x + b.width < p.x +p.width && b.y > p.y && b.y < p.y + p.height){
             return true;
         }
         else{
