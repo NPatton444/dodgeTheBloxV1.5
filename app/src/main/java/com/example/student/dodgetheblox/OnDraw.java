@@ -21,7 +21,7 @@ public class OnDraw extends View {
         super(context);
 
         player = BitmapFactory.decodeResource(getResources(), R.drawable.playership);
-        blox = BitmapFactory.decodeResource(getResources(), R.drawable.yellowblock);
+        blox = BitmapFactory.decodeResource(getResources(), R.drawable.asteroidimage);
     }
 
     @Override

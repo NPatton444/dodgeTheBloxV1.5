@@ -2,6 +2,7 @@ package com.example.student.dodgetheblox;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -56,6 +57,9 @@ public class GameActivity extends Activity implements SensorEventListener {
     //Create Sensor
     private SensorManager sensorManager;
 
+    //Timer
+    CountDownTimer countDownTimer;
+
     //endregion
 
     @Override
@@ -74,7 +78,7 @@ public class GameActivity extends Activity implements SensorEventListener {
         setContentView(v);
 
         cycles = cycleCycles = score = 0;
-        cyclesLoop = 15;
+        cyclesLoop = 20;
         scoreAdder = 10;
 
         display = getWindowManager().getDefaultDisplay();
@@ -96,16 +100,17 @@ public class GameActivity extends Activity implements SensorEventListener {
 
         //Initial Block position
         bloxList = new ArrayList<>();
-        bloxImage = res.getDrawable(R.drawable.yellowblock);
+        bloxImage = res.getDrawable(R.drawable.asteroidimage);
         bloxWidth = bloxImage.getIntrinsicWidth();
         bloxHeight = bloxImage.getIntrinsicHeight();
         Blox firstBlock = new Blox(width / 2 - bloxWidth / 2, -10, bloxWidth, bloxHeight, 5);
         bloxList.add(firstBlock);
+
         execute();
     }
 
     public void execute() {
-        new CountDownTimer(17, 1) {
+        countDownTimer = new CountDownTimer(17, 1) {
             @Override
             public void onTick(long millisUntilFinished) {
             }
@@ -128,9 +133,11 @@ public class GameActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onStop() {
-        sensorManager.unregisterListener(this);
         super.onStop();
-
+        sensorManager.unregisterListener(this);
+        Intent endIntent = new Intent(GameActivity.this, EndActivity.class);
+        finish();
+        startActivity(endIntent);
     }
 
     @Override
@@ -237,6 +244,17 @@ public class GameActivity extends Activity implements SensorEventListener {
         //Move player
         if (p.x > -(playerWidth + 15) && p.x < width + 15) {
             p.Move(p);
+        }
+
+        //endregion
+
+        //region Collision
+
+        for(Blox b : bloxList){
+            if(b.Collision(p, b)) {
+                onStop();
+                break;
+            }
         }
 
         //endregion
