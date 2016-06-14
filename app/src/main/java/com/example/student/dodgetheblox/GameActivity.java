@@ -134,10 +134,6 @@ public class GameActivity extends Activity implements SensorEventListener {
     @Override
     public void onStop() {
         super.onStop();
-        sensorManager.unregisterListener(this);
-        Intent endIntent = new Intent(GameActivity.this, EndActivity.class);
-        finish();
-        startActivity(endIntent);
     }
 
     @Override
@@ -249,18 +245,25 @@ public class GameActivity extends Activity implements SensorEventListener {
         //endregion
 
         //region Collision
+        Boolean hasCollided = false;
 
         for(Blox b : bloxList){
             if(b.Collision(p, b)) {
-                onStop();
+                hasCollided = true;
                 break;
             }
         }
 
+        if (hasCollided) {
+            sensorManager.unregisterListener(this);
+            Intent endIntent = new Intent(GameActivity.this, EndActivity.class);
+            startActivity(endIntent);
+        }
+        else {
+            //Run timer over
+            execute();
+        }
         //endregion
-
-        //Run timer over
-        execute();
     }
 }
 

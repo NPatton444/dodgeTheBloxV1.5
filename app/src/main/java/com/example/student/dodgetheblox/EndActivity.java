@@ -6,6 +6,15 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import org.xml.sax.InputSource;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
 public class EndActivity extends AppCompatActivity {
 
     @Override
