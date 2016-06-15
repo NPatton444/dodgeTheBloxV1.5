@@ -58,5 +58,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void leaderButtonClick() {
+        Intent leaderIntent = new Intent(MenuActivity.this, LeaderActivity.class);
+        MenuActivity.this.startActivity(leaderIntent);
     }
 }
