@@ -43,7 +43,12 @@ public class LeaderActivity extends AppCompatActivity {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
-        myparser.setInput(R.xml.highscores2, null);
+        String file = "R.xml.highscores2.xml";
+        try {
+            myparser.setFeature(file, true);
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
 
         obj = new HandleXML();
         TextView leaderView = (TextView) findViewById(R.id.leadersView);

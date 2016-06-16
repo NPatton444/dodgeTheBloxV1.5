@@ -35,7 +35,7 @@ public class GameActivity extends Activity implements SensorEventListener {
     float playerX, playerY, pAccel, pVel, playerSpeed;
 
     //Booleans for player direction
-    boolean right, left;
+    boolean right, left, hasCollided;
 
     //Integers for blox
     int bloxWidth, bloxHeight;
@@ -105,6 +105,8 @@ public class GameActivity extends Activity implements SensorEventListener {
         bloxHeight = bloxImage.getIntrinsicHeight();
         Blox firstBlock = new Blox(width / 2 - bloxWidth / 2, -10, bloxWidth, bloxHeight, 5);
         bloxList.add(firstBlock);
+
+        hasCollided = false;
 
         execute();
     }
@@ -245,7 +247,6 @@ public class GameActivity extends Activity implements SensorEventListener {
         //endregion
 
         //region Collision
-        Boolean hasCollided = false;
 
         for(Blox b : bloxList){
             if(b.Collision(p, b)) {

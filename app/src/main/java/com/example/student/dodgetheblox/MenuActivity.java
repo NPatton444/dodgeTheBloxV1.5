@@ -42,7 +42,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        controlsButton.setOnClickListener(new View.OnClickListener(){
+        leaderButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 leaderButtonClick();
             }
