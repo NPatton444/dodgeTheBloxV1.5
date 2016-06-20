@@ -2,19 +2,15 @@ package com.example.student.dodgetheblox;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 public class LeaderActivity extends AppCompatActivity {
 
-    HandleXML obj;
-    XmlPullParserFactory xmlFactoryObject;
+    int READ_BLOCK_SIZE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,37 +22,27 @@ public class LeaderActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_leader);
 
-        try {
-            xmlFactoryObject = XmlPullParserFactory.newInstance();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
-        XmlPullParser myparser = null;
-        try {
-            myparser = xmlFactoryObject.newPullParser();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
+        READ_BLOCK_SIZE = 100;
+
+        TextView leadersView = (TextView) findViewById(R.id.leadersView);
 
         try {
-            myparser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
-        String file = "R.xml.highscores2.xml";
-        try {
-            myparser.setFeature(file, true);
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
+            FileInputStream fileIn = openFileInput("highscores.txt");
+            InputStreamReader InputRead = new InputStreamReader(fileIn);
 
-        obj = new HandleXML();
-        TextView leaderView = (TextView) findViewById(R.id.leadersView);
-        for(int i = 0; i < 10; i++){
-            obj.parseXMLAndStoreIt(myparser);
-            if(obj.getName() != null && obj.getScore() != null) {
-                leaderView.append("\n" + obj.getName() + obj.getScore());
+            char[] inputBuffer = new char[READ_BLOCK_SIZE];
+            String s = "";
+            int charRead;
+
+            while ((charRead = InputRead.read(inputBuffer)) > 0) {
+                // char to string conversion
+                String readstring = String.copyValueOf(inputBuffer, 0, charRead);
+                s += readstring;
             }
+            InputRead.close();
+            leadersView.setText(s);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
