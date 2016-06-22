@@ -35,8 +35,8 @@ public class LeaderActivity extends AppCompatActivity {
         main();
     }
 
-    public static void main(){
-        String file_name = "R.raw.highscores";
+    public void main(){
+        String file_name = "";
 
         try{
             ReadFile file = new ReadFile(file_name);

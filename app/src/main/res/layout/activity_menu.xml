@@ -17,7 +17,10 @@
         android:clickable="true"
         android:enabled="true"
         android:layout_above="@+id/leaderButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/leaderButton"
+        android:layout_alignEnd="@+id/leaderButton"
+        android:layout_alignLeft="@+id/leaderButton"
+        android:layout_alignStart="@+id/leaderButton" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,4 +44,15 @@
         android:layout_alignEnd="@+id/playButton"
         android:layout_alignLeft="@+id/playButton"
         android:layout_alignStart="@+id/playButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dodge The Blox"
+        android:id="@+id/textView2"
+        android:textSize="70dp"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

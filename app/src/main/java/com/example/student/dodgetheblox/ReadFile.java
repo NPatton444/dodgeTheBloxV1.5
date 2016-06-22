@@ -7,6 +7,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,11 +25,15 @@ public class ReadFile {
     }
 
     public String[] OpenFile() throws IOException{
-        //InputStream fr = context.getAssets().open(path);
-        //InputStream fr = context.getResources().openRawResource(R.raw.highscores);
+//        InputStream fr = context.getAssets().open(path);
+//        InputStream fr = context.getResources().openRawResource(R.raw.highscores);
         FileReader fr = new FileReader(path);
-        //BufferedReader textReader = new BufferedReader(new InputStreamReader(fr));
+//        BufferedReader textReader = new BufferedReader(new InputStreamReader(fr));
         BufferedReader textReader = new BufferedReader(fr);
+
+//        FileInputStream in = context.openFileInput(path);
+//        InputStreamReader inputStreamReader = new InputStreamReader(in);
+//        BufferedReader textReader = new BufferedReader(inputStreamReader);
 
         int numberOfLines = ReadLines();
         String[] textData = new String[numberOfLines];
