@@ -31,10 +31,12 @@ public class LeaderActivity extends AppCompatActivity {
         READ_BLOCK_SIZE = 100;
 
         leadersView = (TextView) findViewById(R.id.leadersView);
+
+        main();
     }
 
-    public static void main(String[] args) throws IOException{
-        String file_name = "C:\\Users\\student\\AndroidStudioProjects\\dodgeTheBloxV1.2\\app\\src\\main\\res\\highscores";
+    public static void main(){
+        String file_name = "R.raw.highscores";
 
         try{
             ReadFile file = new ReadFile(file_name);
