@@ -15,7 +15,37 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Game Over"
         android:id="@+id/textView"
-        android:layout_centerVertical="true"
+        android:textSize="60dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="60dp" />
+        android:layout_marginTop="83dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:autoText="true"
+        android:editable="true"
+        android:text="Enter Your 3 initials "
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter"
+        android:id="@+id/enterButton"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To view your standing, go to leaderboard on main menu, after you enter your initials"
+        android:id="@+id/goToView"
+        android:layout_below="@+id/enterButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:textSize="25dp"
+        android:visibility="visible" />
 </RelativeLayout>

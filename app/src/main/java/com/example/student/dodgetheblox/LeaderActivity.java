@@ -36,19 +36,24 @@ public class LeaderActivity extends AppCompatActivity {
     }
 
     public void main(){
-        String file_name = "";
-
-        try{
-            ReadFile file = new ReadFile(file_name);
-            String[] aryLines = file.OpenFile();
-
-            for(int i = 0; i < aryLines.length; i++){
-                leadersView.append(aryLines[i]);
-            }
-        }
-        catch(IOException e){
-            String damn = "Didn't Work.";
-            leadersView.setText(damn);
+//        String file_name = "";
+//
+//        try{
+//            ReadFile file = new ReadFile(file_name);
+//            String[] aryLines = file.OpenFile();
+//
+//            for(int i = 0; i < aryLines.length; i++){
+//                leadersView.append(aryLines[i]);
+//            }
+//        }
+//        catch(IOException e){
+//            String damn = "Didn't Work.";
+//            leadersView.setText(damn);
+//        }
+        for(HighScores hs : MainActivity.highScoresList){
+            String score = Integer.toString(hs.score);
+            String name = hs.initials;
+            leadersView.append("\n" + name + " " + score);
         }
     }
 }
